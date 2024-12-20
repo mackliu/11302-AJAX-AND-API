@@ -7,7 +7,6 @@
     <title>XMLHttpRequest</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
         ul li{
             margin:5px;
@@ -28,7 +27,7 @@
     <div class="title"></div>
     <h4></h4>
     <ul></ul>
-
+    <h2>這裏是頁腳</h2>
 </body>
 </html>
 <script>
@@ -54,6 +53,7 @@
         let data=JSON.parse(response);
         console.log(JSON.parse(response));
         let entrys=data.entry;
+        let events='';
         for(let i=0;i<entrys.length;i++){
             
             let li='';
@@ -62,8 +62,13 @@
             li+=`-`;
             li+=`${entrys[i].author.name}`;
             li+=`</li>`;
-            $('ul').append(li);
+            
+            events+=li;
         }
+
+        let ul=document.getElementsByTagName('ul')[0];
+        ul.innerHTML=events;
+        
     }
 
     //送出請求
