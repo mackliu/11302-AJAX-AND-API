@@ -7,6 +7,21 @@
     <title>XMLHttpRequest</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        ul li{
+            margin:5px;
+            padding:5px 10px;
+            border-radius: 10px;
+            border:1px solid #ccc;
+            box-shadow: 1px 1px 10px #999;
+        }
+        ul li:hover{
+            background:lightgreen;
+            padding:8px 13px;
+            font-size:18px;
+        }
+    </style>
 </head>
 <body>
     <h1 class="header">XMLHttpRequest</h1>
@@ -24,16 +39,33 @@
     * 4.建立得到回應時的各項行為
     * 5.送出請求
     ********************************************************/
-
+    
     //宣告一個XMLHttpRequest物件
-
+    let xhr=new XMLHttpRequest();
 
     //建立請求的各項設定及實質內容
-
+    xhr.open('GET','https://kktix.com/events.json')
 
     //建立得到回應時的各項設定及行為
-
+    xhr.onload=function(){
+        let type= xhr.getResponseHeader('Content-Type','application/json');
+        let status=xhr.status;
+        let response=xhr.responseText;
+        let data=JSON.parse(response);
+        console.log(JSON.parse(response));
+        let entrys=data.entry;
+        for(let i=0;i<entrys.length;i++){
+            
+            let li='';
+            li+=`<li>`;
+            li+=`${entrys[i].title}`;
+            li+=`-`;
+            li+=`${entrys[i].author.name}`;
+            li+=`</li>`;
+            $('ul').append(li);
+        }
+    }
 
     //送出請求
-
+    xhr.send();
     </script>
