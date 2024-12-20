@@ -8,12 +8,21 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <style>
+        ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 50px;
+    margin: auto;
+    justify-content: space-evenly;
+}
         ul li{
-            margin:5px;
-            padding:5px 10px;
-            border-radius: 10px;
-            border:1px solid #ccc;
-            box-shadow: 1px 1px 10px #999;
+            width: 22%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #999;
+    margin: 16px 0;
+    height: 250px;
         }
         ul li:hover{
             background:lightgreen;
@@ -41,7 +50,6 @@
     //建立FETCH請求及實質內容
     fetch('https://kktix.com/events.json')
         .then(function(response){
-
             return response.json();
         })
         .then(function(data){
@@ -54,7 +62,6 @@
                 li+=`-`;
                 li+=`${entrys[i].author.name}`;
                 li+=`</li>`;
-                
                 events+=li;
             }
             let ul=document.getElementsByTagName('ul')[0];
