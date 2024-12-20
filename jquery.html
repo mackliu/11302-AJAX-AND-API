@@ -8,6 +8,30 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
       <!-------引入jQuery函式庫------->
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+      <style>
+        ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 50px;
+    margin: auto;
+    justify-content: space-evenly;
+}
+        ul li{
+            width: 22%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #999;
+    margin: 16px 0;
+    height: 250px;
+        }
+        ul li:hover{
+            background:lightgreen;
+            padding:8px 13px;
+            font-size:18px;
+        }
+    </style>      
 </head>
 <body>
     <h1 class="header">jQuery</h1>
@@ -26,15 +50,26 @@
     ********************************************************/
      
     //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
+    $.ajax(
       {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
+        url:'https://kktix.com/events.json',
+        type:'get',
+        success:(res)=>{
+        console.log(res)
+          let entrys=res.entry;
+
+            for(let i=0;i<entrys.length;i++){    
+                let li='';
+                li+=`<li>`;
+                li+=`${entrys[i].title}`;
+                li+=`-`;
+                li+=`${entrys[i].author.name}`;
+                li+=`</li>`;
+                $('ul').append(li);
+            }
+          },
       }
-    ) */   
+    )   
 
     
     //利用$.get()方法傳送請求並取得回應
