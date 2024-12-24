@@ -30,7 +30,6 @@
 </html>
 <script>
 getClasses();
-query(101);
 /************************************
 * 1.考慮觸發行為的事件
 * 2.建立監聽行為
@@ -42,11 +41,13 @@ query(101);
 function getClasses(){
   $.get("./api/get_classes.php",function(classes){
     let data=JSON.parse(classes);
+    console.log(data);
     data.forEach(function(item,idx){
       let c=`<li class="nav-item">
               <a class="nav-link" href="javascript:query(${item.classroom})">${item.classroom}</a>
              </li>`
       $("#classesList").append(c);
+        query(data[0].classroom);
     })
   })
 }
