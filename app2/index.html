@@ -51,8 +51,10 @@ function getClasses(){
               <a class="nav-link" href="javascript:query(${item.classroom})">${item.classroom}</a>
              </li>`
       $("#classesList").append(c);
-        query(data[0].classroom);
     })
+    if($("#students").html()==''){
+      query(data[0].classroom);
+    }
   })
 }
 let CreateModal

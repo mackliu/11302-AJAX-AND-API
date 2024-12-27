@@ -1,7 +1,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel" aria-hidden="true">
+<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
     <form action="#" method="post">
@@ -54,8 +54,13 @@ $("#send").on("click",function(){
       getClasses()
       alert("新增完成")
       CreateModal.hide();
-      CreateModal.dispose();
-      $("#modal").html("");
+      $("#CreateModal").on("hidden.bs.modal",function(){
+         CreateModal.dispose();
+         $("#modal").html("");
+         query(formData.classroom)
+
+      })
+
 
    })
    //console.log(formData);
