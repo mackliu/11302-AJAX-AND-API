@@ -44,7 +44,8 @@ getClasses();
 function getClasses(){
   $.get("./api/get_classes.php",function(classes){
     let data=JSON.parse(classes);
-    console.log(data);
+    $("#classesList").html(''); 
+   //console.log(data);
     data.forEach(function(item,idx){
       let c=`<li class="nav-item">
               <a class="nav-link" href="javascript:query(${item.classroom})">${item.classroom}</a>
@@ -54,12 +55,12 @@ function getClasses(){
     })
   })
 }
-
+let CreateModal
 //載入新增資料表單內容
 function create(){
   $.get("./create_form.php",function(html){
     $("#modal").html(html);
-    let CreateModal = new bootstrap.Modal('#CreateModal');
+    CreateModal = new bootstrap.Modal('#CreateModal');
     CreateModal.show();
   })
 }
