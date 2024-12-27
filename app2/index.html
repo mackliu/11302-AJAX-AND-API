@@ -67,6 +67,7 @@ function create(){
 
 //查詢指定班的學生資料的函式
 function query(code){
+  console.log(code)
   $.get("./api/query.php",{code},function(students){
       let data=JSON.parse(students);
       //console.log(data);
@@ -103,12 +104,12 @@ function query(code){
   })
 }
 
-
+let EditModal
 //取得編輯資料表單內容
 function getEditForm(id){
   $.get("./edit_form.php",{id},function(html){
     $("#modal").html(html);
-    let EditModal = new bootstrap.Modal('#EditModal');
+    EditModal = new bootstrap.Modal('#EditModal');
     EditModal.show();
   })
 }
