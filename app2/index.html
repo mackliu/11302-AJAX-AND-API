@@ -89,11 +89,11 @@ function query(code){
                 <td class='p-2'>${item.address}</td>
                 <td class='p-2'>
                     <button class='btn btn-success'>編輯</button>
-                    <button class='btn btn-danger' onclick='del(${item.id},${item.classroom})'>刪除</button>
+                    <button class='btn btn-danger' onclick='del(${item.id},this)'>刪除</button>
                   </td>
                 </tr>`;
         $("#students").append(row);                
-      })           
+      })
   })
 }
 
@@ -103,13 +103,14 @@ function update(){
 }
 
 //刪除資料的函式
-function del(id,classroom){
+function del(id,btn){
   let chk=confirm('確定要刪除嗎？');
   if(chk){
 
-    $.post('./api/delete.php',{id,classroom},function(res){
+    $.post('./api/delete.php',{id},function(){
       //console.log(res);
-      query(res);
+      //query(res);
+      $(btn).parents('tr').remove();  
     })
   }
 }
